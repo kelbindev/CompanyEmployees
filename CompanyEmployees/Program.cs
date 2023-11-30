@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
+builder.Services.ConfigureRepositoryManager();
+
 builder.Services.AddControllers();
 
 builder.Services.ConfigureCors();
