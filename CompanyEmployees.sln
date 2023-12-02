@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{6177DBC8-0799-45A8-A0D2-7576B0D24D18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{9A5B6025-BFB4-4438-8CD7-BDF218F57F18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{9A5B6025-BFB4-4438-8CD7-BDF218F57F18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{16047330-9C24-4333-9EA7-0773E87AB043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{16047330-9C24-4333-9EA7-0773E87AB043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Service.Contracts\Service.Contracts.csproj", "{4C24BFA3-C6D2-4D3F-A521-992DA3D63EA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{20A7A7CF-41C7-433A-92C2-808874999437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{16047330-9C24-4333-9EA7-0773E87AB043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16047330-9C24-4333-9EA7-0773E87AB043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16047330-9C24-4333-9EA7-0773E87AB043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C24BFA3-C6D2-4D3F-A521-992DA3D63EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C24BFA3-C6D2-4D3F-A521-992DA3D63EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C24BFA3-C6D2-4D3F-A521-992DA3D63EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C24BFA3-C6D2-4D3F-A521-992DA3D63EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A7A7CF-41C7-433A-92C2-808874999437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A7A7CF-41C7-433A-92C2-808874999437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A7A7CF-41C7-433A-92C2-808874999437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A7A7CF-41C7-433A-92C2-808874999437}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
