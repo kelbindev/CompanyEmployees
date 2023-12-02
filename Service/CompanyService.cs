@@ -1,15 +1,30 @@
 ﻿using Contracts;
+using Entities.Models;
 using Service.Contracts;
 
 namespace Service;
 internal sealed class CompanyService : ICompanyService
 {
     private readonly IRepositoryManager _repositoryManager;
-    private readonly ILoggerManager _loggerManager;
+    private readonly ILoggerManager _logger;
 
-    public CompanyService(IRepositoryManager repositoryManager, ILoggerManager loggerManager)
+    public CompanyService(IRepositoryManager repositoryManager, ILoggerManager logger)
     {
         _repositoryManager = repositoryManager;
-        _loggerManager = loggerManager;
+        _logger = logger ;
+    }
+
+    public IEnumerable<Company> GetAllCompanies(bool trackChanges)
+    {
+        try
+        {
+            var companies = _repositoryManager.Company.GetAllCompanies(trackChanges);
+            return companies;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Something went wrong in the {nameof(GetAllCompanies)} service method {ex}");
+            throw;
+        }
     }
 }
