@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+CompanyEmployees/Properties/launchSettings.json
+CompanyEmployees/internal_logs/internallog.txt
