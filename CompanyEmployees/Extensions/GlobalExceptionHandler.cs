@@ -1,4 +1,5 @@
-﻿using Entities.ErrorModel;
+﻿using Contracts;
+using Entities.ErrorModel;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 
@@ -6,12 +7,10 @@ namespace CompanyEmployees.Extensions;
 
 public class GlobalExceptionHandler : IExceptionHandler
 {
-    private readonly ILogger _logger;
-    public GlobalExceptionHandler(ILogger logger)
+    private readonly ILoggerManager _logger;
+    public GlobalExceptionHandler(ILoggerManager logger)
     {
-
         _logger = logger;   
-
     }
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
