@@ -30,4 +30,18 @@ internal sealed class EmployeeService : IEmployeeService
 
         return employeesDto;
     }
+
+    public EmployeeDto GetEmployee(Guid companyId, Guid id, bool trackChanges)
+    {
+        var company = _repositoryManager.Company.GetCompany(companyId, trackChanges);
+
+        if (company is null) throw new CompanyNotFoundException(companyId);
+
+        var employeeFromDb = _repositoryManager.Employee.GetEmployee(companyId, id, trackChanges);
+
+        var employeeDto = _mapper.Map<EmployeeDto>(employeeFromDb);
+
+        return employeeDto;
+    }
+
 }

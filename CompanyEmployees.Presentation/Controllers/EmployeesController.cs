@@ -17,4 +17,12 @@ public class EmployeesController : ControllerBase
         var employees = _services.EmployeeService.GetEmployees(companyId, false);
         return Ok(employees);
     }
+
+    [HttpGet("{id:guid}")]
+    public IActionResult GetEmployeeForCompany(Guid companyId, Guid id)
+    {
+        var employee = _services.EmployeeService.GetEmployee(companyId, id, false);
+
+        return Ok(employee);
+    }
 }
