@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.ErrorModel;
+using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
 using Shared.Dto;
@@ -47,4 +48,18 @@ internal sealed class CompanyService : ICompanyService
         var companyToReturn = _mapper.Map<CompanyDto>(companyEntity);
         return companyToReturn;
     }
+
+    public IEnumerable<CompanyDto> GetByIds(IEnumerable<Guid> ids, bool trackChanges) 
+    { 
+        if (ids is null) 
+            throw new IdParametersBadRequestException(); 
+
+        var companyEntities = _repositoryManager.Company.GetByIds(ids, trackChanges); 
+        
+        if (ids.Count() != companyEntities.Count()) 
+            throw new CollectionByIdsBadRequestException(); 
+        
+        var companiesToReturn = _mapper.Map<IEnumerable<CompanyDto>>(companyEntities); 
+        
+        return companiesToReturn; }
 }
