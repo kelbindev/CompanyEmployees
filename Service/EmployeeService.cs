@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.ErrorModel;
+using Entities.Models;
 using Service.Contracts;
 using Shared.Dto;
 
@@ -22,7 +23,8 @@ internal sealed class EmployeeService : IEmployeeService
     {
         var company = _repositoryManager.Company.GetCompany(companyId, trackChanges);
 
-        if (company is null) throw new CompanyNotFoundException(companyId);
+        if (company is null) 
+            throw new CompanyNotFoundException(companyId);
 
         var employeesFromDb = _repositoryManager.Employee.GetEmployees(companyId, trackChanges);
 
@@ -35,7 +37,8 @@ internal sealed class EmployeeService : IEmployeeService
     {
         var company = _repositoryManager.Company.GetCompany(companyId, trackChanges);
 
-        if (company is null) throw new CompanyNotFoundException(companyId);
+        if (company is null) 
+            throw new CompanyNotFoundException(companyId);
 
         var employeeFromDb = _repositoryManager.Employee.GetEmployee(companyId, id, trackChanges);
 
@@ -44,4 +47,21 @@ internal sealed class EmployeeService : IEmployeeService
         return employeeDto;
     }
 
+    public EmployeeDto CreateEmployeeForCompany(Guid companyId, EmployeeForCreationDto employeeForCreation, bool trackChanges) 
+    { 
+        var company = _repositoryManager.Company.GetCompany(companyId, trackChanges); 
+        
+        if (company is null) 
+            throw new CompanyNotFoundException(companyId); 
+        
+        var employeeEntity = _mapper.Map<Employee>(employeeForCreation);
+        
+        _repositoryManager.Employee.CreateEmployeeForCompany(companyId, employeeEntity);
+        
+        _repositoryManager.Save(); 
+        
+        var employeeToReturn = _mapper.Map<EmployeeDto>(employeeEntity); 
+        
+        return employeeToReturn; 
+    }
 }
