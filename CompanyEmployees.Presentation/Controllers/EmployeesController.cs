@@ -31,7 +31,7 @@ public class EmployeesController : ControllerBase
     public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
     {
         if (employee is null)
-            return BadRequest("Employee cannot be empty");
+            return BadRequest("Employee object is null");
         
         var employeeToReturn = _service.EmployeeService.CreateEmployeeForCompany(companyId, employee, false);
 
@@ -43,6 +43,17 @@ public class EmployeesController : ControllerBase
     { 
         _service.EmployeeService.DeleteEmployeeForCompany(companyId, id, trackChanges: false); 
 
+        return NoContent(); 
+    }
+
+    [HttpPut("{id:guid}")] 
+    public IActionResult UpdateEmployeeForCompany(Guid companyId, Guid id, EmployeeForUpdateDto employee) 
+    { 
+        if (employee is null) 
+            return BadRequest("Employee object is null"); 
+        
+        _service.EmployeeService.UpdateEmployeeForCompany(companyId, id, employee, compTrackChanges: false, empTrackChanges: true);
+        
         return NoContent(); 
     }
 }
