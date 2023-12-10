@@ -11,10 +11,10 @@ public class MappingProfile : Profile
             .ForCtorParam("FullAddress", opt => 
                 opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
 
-        CreateMap<Employee, EmployeeDto>();
-        CreateMap<CompanyForCreationDto, Company>();
-        CreateMap<EmployeeForCreationDto, Employee>();
-        CreateMap<EmployeeForUpdateDto, Employee>();
-        CreateMap<CompanyForUpdateDto, Company>();
+        CreateMap<Employee, EmployeeDto>().ReverseMap();
+        CreateMap<CompanyForCreationDto, Company>().ReverseMap();
+        CreateMap<EmployeeForCreationDto, Employee>().ReverseMap();
+        CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
+        CreateMap<CompanyForUpdateDto, Company>().ReverseMap();
     }
 }
