@@ -1,2 +1,4 @@
-﻿namespace Shared.Dto;
-public record EmployeeForUpdateDto(string Name, int Age, string Position);
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Shared.Dto;
+public record EmployeeForUpdateDto : EmployeeForManipulationDto;

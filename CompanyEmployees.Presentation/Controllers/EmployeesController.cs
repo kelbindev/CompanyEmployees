@@ -29,7 +29,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
+    public IActionResult CreateEmployeeForCompany(Guid companyId, EmployeeForCreationDto employee)
     {
         if (employee is null)
             return BadRequest("Employee object is null");
