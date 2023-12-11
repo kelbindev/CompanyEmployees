@@ -66,7 +66,9 @@ public class EmployeesController : ControllerBase
         var result = _service.EmployeeService.GetEmployeeForPatch(companyId, id, compTrackChanges: false, empTrackChanges: true); 
         
         patchDoc.ApplyTo(result.employeeToPatch);
-        
+
+        TryValidateModel(result.employeeToPatch);
+
         _service.EmployeeService.SaveChangesForPatch(result.employeeToPatch, result.employeeEntity); 
         
          return NoContent(); 
