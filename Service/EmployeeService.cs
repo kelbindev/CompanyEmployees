@@ -4,6 +4,7 @@ using Entities.ErrorModel;
 using Entities.Models;
 using Service.Contracts;
 using Shared.Dto;
+using Shared.RequestFeatures;
 
 namespace Service;
 internal sealed class EmployeeService : IEmployeeService
@@ -19,18 +20,18 @@ internal sealed class EmployeeService : IEmployeeService
         _mapper= mapper;
     }
 
-    public async Task<IEnumerable<EmployeeDto>> GetEmployeesAsync(Guid companyId, bool trackChanges)
+    public async Task<(IEnumerable<EmployeeDto> employees, MetaData metaData)> GetEmployeesAsync(Guid companyId, EmployeeParameters employeeParameters, bool trackChanges)
     {
         var company = await _repositoryManager.Company.GetCompanyAsync(companyId, trackChanges);
 
         if (company is null) 
             throw new CompanyNotFoundException(companyId);
 
-        var employeesFromDb = await _repositoryManager.Employee.GetEmployeesAsync(companyId, trackChanges);
+        var employeesWithMetaData = await _repositoryManager.Employee.GetEmployeesAsync(companyId, employeeParameters, trackChanges);
 
-        var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
+        var employeesDto =_mapper.Map<IEnumerable<EmployeeDto>>(employeesWithMetaData);
 
-        return employeesDto;
+        return (employees: employeesDto, metaData: employeesWithMetaData.MetaData);
     }
 
     public async Task<EmployeeDto> GetEmployeeAsync(Guid companyId, Guid id, bool trackChanges)
