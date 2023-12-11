@@ -69,7 +69,7 @@ public class EmployeesController : ControllerBase
 
         TryValidateModel(result.employeeToPatch);
 
-        _service.EmployeeService.SaveChangesForPatch(result.employeeToPatch, result.employeeEntity); 
+        await _service.EmployeeService.SaveChangesForPatch(result.employeeToPatch, result.employeeEntity); 
         
          return NoContent(); 
     }
